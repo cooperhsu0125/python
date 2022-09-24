@@ -9,3 +9,5 @@ print("I am " + old)
 2.input:12
 3.Output:I am 12
 """
+old=input('How old are you?')
+print('I am '+old+'.')
