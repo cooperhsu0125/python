@@ -9,3 +9,7 @@ EX:
 請輸入體重:50
 你的BMI為17.301038062283737
 """
+W=float(input("請輸入體重(公斤)"))
+H=float(input("請輸入身高(公分)"))
+bmi=W/(H/100)**2
+print("你的BMI指數是" + str(bmi))
