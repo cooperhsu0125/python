@@ -3,6 +3,7 @@
 # int(a)變整數
 # float(a)變小數
 # str(a)變字串
+# bool布林值
 # type(a)種類
 # bool(a)True or False
 # print(a)顯示
