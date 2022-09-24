@@ -1,4 +1,5 @@
 # input('提示文字')=str
+# none空
 # max(a,b,c)取最大
 # int(a)變整數
 # float(a)變小數
