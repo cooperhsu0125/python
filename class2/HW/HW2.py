@@ -10,4 +10,4 @@ print("I am " + old)
 3.Output:I am 12
 """
 old=input('How old are you?')
-print('I am '+old+'.')
+print("I am " + old+'.')
