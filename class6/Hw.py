@@ -18,8 +18,6 @@ EX
 a = int(input())
 b = 1
 while b <= a:
-    if b % 3 == 0:
-        print(b)
-    if b % 7 == 0:
+    if b % 3 == 0 or b % 7 == 0:
         print(b)
     b += 1
