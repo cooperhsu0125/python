@@ -14,7 +14,7 @@ import turtle
 # turtle.fillcolor("yellow") #區域填滿顏色
 # turtle.begin_fill() #填滿區域設定開始
 # turtle.end_fill() #填滿區域設定結束
-# turtle.
+# turtle.tracer(0, 0)#0個畫面每個畫面1秒
 # turtle.done()最後
 # for a in range(1):(從0到1(0))
 # 要回圈的程式
@@ -24,7 +24,6 @@ import turtle
 #     turtle.forward(100)
 #     turtle.right(90)
 # turtle.done()
-
 # turtle.speed(1000000)
 # turtle.color('blue')
 # turtle.shape('circle')

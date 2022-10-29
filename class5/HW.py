@@ -5,6 +5,7 @@ t0_turtle_stamp.jpg
 提示：
 turtle.home()是讓烏龜回到原點的指令
 """
+
 turtle.penup()
 turtle.goto(90, 0)
 turtle.stamp()
