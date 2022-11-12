@@ -23,9 +23,9 @@ import random as r
 x = r.randrange(101)
 y = 0
 z = 100
-print(x * 2 + 1)
 while True:
     a = int(input(f'請輸入{y}~{z}的整數'))
+    a = x
     if a > x:
         print('再小一點')
         if y < a < z:
