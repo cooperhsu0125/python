@@ -57,19 +57,20 @@ while True:
     if x != '1' and '2' and '3' and '4':
         print('沒有這項商品')
         '''
-import random as r
-import time as t
+# import random as r
+# import time as t
 # while True:
 #     print(r.randrange(7))
 #     t.sleep(3)
-x = (r.randrange(101))
-while True:
+# x = (r.randint(1,100))
 
-    a = int(input('請輸入1~100的整數'))
-    if a > x:
-        print('再小一點')
-    if a < x:
-        print('再大一點')
-    if a == x:
-        print('猜中了')
-        break
+# while True:
+
+#     a = int(input('請輸入1~100的整數'))
+#     if a > x:
+#         print('再小一點')
+#     if a < x:
+#         print('再大一點')
+#     if a == x:
+#         print('猜中了')
+#         break
