@@ -17,9 +17,9 @@ while True:
     else:
         if f == 3:
             keys = b.values()
-            g = 0
+            g = len(b)
             for key in keys:
-                g += key
+                p += key
             print(f'總平均={g/p}')
             break
 
@@ -27,8 +27,6 @@ while True:
             x = input('請輸入要新增的科目:')
             y = int(input('請輸入要新增的成績:'))
             b[x] = y
-            p += 1
         if f == 2:
             m = input('請輸入想移除的科目')
             n = b.pop(m, 'error')
-            p -= 1
