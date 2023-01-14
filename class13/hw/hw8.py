@@ -10,4 +10,4 @@ B. print("你已經工作了" + (int(end) - int(start)) + "小時!")
 C. print("你已經工作了" + str(end - start) + "小時!")
 D. print("你已經工作了" + int(end - start) + "小時!")
 '''
-# C
+# A

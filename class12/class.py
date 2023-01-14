@@ -36,20 +36,20 @@
 # v=eval('a+b')
 # print(v)
 
-import datetime as g
+# import datetime as g
 
-d = g.date.today()
-print(d)
-print(d.year)
-print(d.month)
-print(d.day)
+# d = g.date.today()
+# print(d)
+# print(d.year)
+# print(d.month)
+# print(d.day)
 
-print(d.strftime('%d %b %B %Y %y %A %a'))
+# print(d.strftime('%d %b %B %Y %y %A %a'))
 
-a = input('birthday(y/m/d)')
-print(a)
-bir = g.datetime.strptime(a, '%Y/%m/%d')
-print(bir.date())
-print(bir.year)
-print(bir.month)
-print(bir.day)
+# a = input('birthday(y/m/d)')
+# print(a)
+# bir = g.datetime.strptime(a, '%Y/%m/%d')
+# print(bir.date())
+# print(bir.year)
+# print(bir.month)
+# print(bir.day)

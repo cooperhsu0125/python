@@ -14,7 +14,7 @@ pace = time / distance_kms
 print("步速是: ", str((pace // 60)) + ":" + str((pace % 60)))
 '''
 以上空格分別要填入的函式名為:
-(A)(1) A. int B. string C. float
+(C)(1) A. int B. string C. float
 (A)(2) A. int B. string C. float
 (A)(3) A. int B. string C. float
 '''
