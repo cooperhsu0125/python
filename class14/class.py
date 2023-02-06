@@ -69,4 +69,42 @@ print("11" in A):False
 print("12" in A):False
 print("H" in A):False
 print(a in A):Error
+11
+B = ["a", True ,8, False]
+print("b" in B):False
+print(8 in B):True
+print(True in B):True
+print(10 in B):False
+print(False in B):True
+12
+讓使用者輸入兩個數值A and B，
+•如果A大於B則顯示，"A的值為xx 大於B的值xx"
+•如果B大於A則顯示，"B的值為xx 大於A的值xx"
+•如果A等於B則顯示，"A的值為xx 等於B的值xx"
+A=int(input())
+B=int(input())
+if A > B:
+    print(f"A的值為{A} 大於B的值{B}")
+if A < B:
+    print(f"B的值為{B} 大於A的值{A}")
+if A = B:
+    print(f"A的值為{A} 等於B的值{B}")
+13
+•請檢查使用者輸入的數字為1位數，2位數，
+•或2位以上，且必需檢查輸入的數是不是正整數。
+a=int(input())
+if a >= 0 < :
+    print('1位數')
 '''
+try:
+    a = int(input())
+except:
+    print('不是整數')
+if a < 0:
+    print('不是正數')
+if a >= 0 and a < 10:
+    print('1位數')
+if a >= 10 and a < 100:
+    print('2位數')
+if a >= 100:
+    print('2位以上')
