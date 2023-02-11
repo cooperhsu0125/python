@@ -9,4 +9,4 @@ B. float, float, str, bool
 c. int, float, str, bool
 D. float, int, str, str
 '''
-# B
+# B E = float

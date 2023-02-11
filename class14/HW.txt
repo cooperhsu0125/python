@@ -1,0 +1,50 @@
+2
+c
+c
+b b a a
+c f b a
+b d 
+c
+a g f e
+4
+a e b d 
+c 
+c 
+b d a 
+d b 
+b 
+b a a 
+Y N Y Y 
+b d d d 
+b c c 
+16 a b 
+17 c
+18 d
+19 a c 
+11 while chance <= 3:  break  chance += 1
+12 c b 
+13 
+14 b a a b 
+15 a d c 
+#5
+7 b c 
+8 e a b d c 
+9 d c b c 
+10 d a c e b 
+1 c 
+2 a a 
+3 a b d c 
+4 a b b c 
+5 a b c 
+6 d d 
+15 a f 
+16 y n n n
+17 b a b 
+18 y n y n 
+19 a c 
+20 a 
+11 a 
+12 a 
+13 d 
+14 y n n y 
+21 a d 

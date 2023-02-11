@@ -92,19 +92,68 @@ if A = B:
 13
 •請檢查使用者輸入的數字為1位數，2位數，
 •或2位以上，且必需檢查輸入的數是不是正整數。
-a=int(input())
-if a >= 0 < :
-    print('1位數')
-'''
 try:
     a = int(input())
 except:
     print('不是整數')
-if a < 0:
-    print('不是正數')
-if a >= 0 and a < 10:
-    print('1位數')
-if a >= 10 and a < 100:
-    print('2位數')
-if a >= 100:
-    print('2位以上')
+else:
+    if a < 0:
+        print('不是正數')
+    if a >= 0 and a < 10:
+        print('1位數')
+    if a >= 10 and a < 100:
+        print('2位數')
+    if a >= 100:
+        print('2位以上')
+14
+•請設計電影收票系統，讓使用者輸入年齡和身份。
+•4歲以下50元
+•5歲以上不滿18，且是學生70元
+•5歲以上不滿18，且不是學生120元
+•18歲以上，且是學生160元
+•18歲以上，且不是學生200元
+a=int(input())
+b=input()
+if a >= 4:
+    print('50元')
+if a >= 5 and a < 18 and b == '學生':
+    print('70元')
+if a >= 5 and a < 18 and b != '不是學生':
+    print('120元')
+if a >= 18 and b == '學生':
+    print('160元')
+if a >= 18 and b == '不是學生':
+    print('200元')
+15
+a=float(input())
+b=input()
+if a >= 37.5 or b = '沒有':
+    print('不能進入')
+if a >= 38.5 or a <= 34:
+    print('須送醫')
+else:
+    print('施打疫苗')
+16
+import random as r
+
+a = r.randint(1, 100)
+b = 1
+while b <= 10:
+    c = int(input())
+    if c == a:
+        print('correct')
+        break
+    else:
+        print('wrong')
+    b += 1
+17
+a = 0
+while a <= 4:
+    a += 1
+    print('*' * a + '\n')
+18
+a = 0
+while a <= 4:
+    a += 1
+    print(''*(5-a)+'*' * a + '\n')
+'''

@@ -5,3 +5,4 @@
 (T)C. None is None
 (T)D. -5<0<5
 '''
+# or 第一個不是零的
