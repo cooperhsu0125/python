@@ -3,7 +3,7 @@ import random as r
 
 
 def hi():
-    Lbl.config(text='hi', fg=color[r.randint(0, 2)], bg='black')
+    Lbl.config(text='hi', fg=color[r.randint(0, 2)], bg='white')
 
 
 win = Tk()
