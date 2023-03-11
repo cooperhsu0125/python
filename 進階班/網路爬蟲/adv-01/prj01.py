@@ -7,9 +7,17 @@ def hi():
 
 
 win = Tk()
-win.title('1')
+win.title('GUI')
 
-color = ['red', 'green', 'blue']
+color = [
+    "black", "red", "green", "blue", "yellow", "orange", "purple", "pink",
+    "brown", "gray", "cyan", "magenta", "gold", "silver", "lime", "maroon",
+    "navy", "olive", "teal", "violet", "indigo", "coral", "crimson", "hotpink",
+    "khaki", "lavender", "lavenderblush", "lemonchiffon", "lightblue",
+    "lightcoral", "lightcyan", "lightgoldenrodyellow", "lightgreen",
+    "lightgrey", "lightpink", "lightsalmon", "lightseagreen", "lightskyblue",
+    "lightslategray", "lightsteelblue", "lightyellow"
+]
 
 Lbl = Label(win, text='', fg='white', bg='black')
 Lbl.pack()
