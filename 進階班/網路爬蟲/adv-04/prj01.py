@@ -1,3 +1,4 @@
+from tkinter import filedialog
 from ttkbootstrap import *
 from PIL import ImageTk, Image
 import random as r
@@ -6,7 +7,19 @@ import os as o
 
 
 def e():
-    print('e')
+    global file_path
+    file_path = filedialog.askopenfilename(initialdir=s.path[0])
+    Lbl2.config(text=file_path)
+
+
+def y():
+    global file_path
+    image = Image.open(file_path)
+    image = image.resize((canvas.winfo_width(), canvas.winfo_height()),
+                         Image.ANTIALIAS)
+    photo = ImageTk.PhotoImage(image)
+    canvas.create_image(0, 0, anchor='nw', image=photo)
+    canvas.image = photo
 
 
 o.chdir(s.path[0])  #設定工作目錄
@@ -27,7 +40,7 @@ Lbl2.grid(row=0, column=1, sticky='E')
 btn = Button(win, text='瀏覽', command=e, style='TButton')
 btn.grid(row=0, column=2, sticky='W')
 
-btn1 = Button(win, text='顯示', command=e, style="TButton")
+btn1 = Button(win, text='顯示', command=y, style="TButton")
 btn1.grid(row=1, columnspan=3, sticky='EW')
 
 canvas = Canvas(win, width=600, height=600)
