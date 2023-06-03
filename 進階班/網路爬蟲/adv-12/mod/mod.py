@@ -3,6 +3,7 @@ import requests
 import datetime
 import matplotlib.pyplot as plt
 from matplotlib.font_manager import FontProperties
+from pytube import YouTube
 
 
 def call_weather_api(lon: str = "121.5319", lat: str = "25.0478") -> dict:
@@ -59,3 +60,36 @@ def get_7_Days_weather(info: dict):
         temps.append(temp)
         print(f"{time} 的溫度是 {temp} 度")
     return dates, temps
+
+
+def get_video_info(url: str):
+    yt = YouTube(url)
+    print(f"影片名稱:{yt.title}")  # 取得影片的標題資訊
+    print(f"影片作者:{yt.author}")  # 取得影片的作者資訊
+    print(f"影片長度:{yt.length}秒")  # 取得影片的長度資訊
+    print(f"縮圖網址:{yt.thumbnail_url}")  # 取得影片的縮圖網址
+    streams = yt.streams.filter(progressive=True, file_extension='mp4')
+    for stream in streams:
+        print(stream)
+    res = []
+    for stream in streams:
+        res.append(stream.resolution)
+
+    print(res)
+    return yt.title, yt.author, yt.length, yt.thumbnail_url, res
+
+
+def download_video(url: str, r: str):
+    yt = YouTube(url)
+    streams = yt.streams.filter(progressive=True, file_extension='mp4')
+    res = []
+    for stream in streams:
+        res.append(stream.resolution)
+    if r in res:
+        # 取得該解析度的串流
+        stream = streams.filter(res=r)[0]
+        # 下載影片
+        stream.download()
+        return True
+    else:
+        return False
