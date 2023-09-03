@@ -19,7 +19,7 @@
 # #3. 開啟檔案
 # myFile = open(fileName, Mode)
 # #4. 寫入檔案 \n 換行符號
-# myFile.write("Hi\n")
+# myFile.write("Hi\n")#從游標的地方開始寫
 # myFile.write("How old are you?\n")
 # #5. 關閉檔案
 # myFile.close()
@@ -31,17 +31,18 @@
 # # 3. 開啟檔案
 # myFile = open(fileName, Mode)
 # #4. 寫入檔案 \n 換行符號
-# myFile.write("Hi\n")
+# myFile.write("Hi\n")#這時候游標在檔案最後面
 # myFile.write("My age is 18\n")
+# myfile.seek(0)#游標到第0個字
 # #5. 關閉檔案
 # myFile.close()
 
 # #1. 要開啟的檔名
-# path = "Class13/test.txt"
+# path = "test.txt"
 # #2. 指定w/ r /a mode
 # f = open(path, 'r')
 # #3. 讀取檔案並顯示
-# line = f.readline()
+# line = f.readline()#從游標的地方開始讀
 # f.close()
 
 # f = open(path, 'r')
@@ -51,7 +52,7 @@
 # #4. 關閉檔案
 # f.close()
 
-a = 'class13/score.txt'
+a = 'score.txt'
 b = open(a, 'w')
 b.write('Peter:90\n')
 b.write('Tom:70\n')
