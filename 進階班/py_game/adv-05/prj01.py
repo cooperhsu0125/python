@@ -6,7 +6,7 @@ import os
 
 ####################定義函式######################
 def gophers_update():
-    global tick, pos, times
+    global tick, pos, times, gopher_tick, gopher
     if tick > max_tick:
         times += 1
         new_pos = r.randint(0, 5)
@@ -15,8 +15,15 @@ def gophers_update():
 
     else:
         tick += 1
-
-    screen.blit(gopher, (pos[0] - gopher_width / 2, pos[1] - gopher_heigh / 2))
+    if gopher == gopher2:
+        if gopher_tick > gopher_max_tick:
+            gopher = gopher1
+            gopher_tick = 0
+        else:
+            gopher_tick += 1
+    screen.blit(
+        gopher,
+        (pos[0] - gopher.get_width() / 2, pos[1] - gopher.get_height() / 2))
 
 
 def mouse_update():
@@ -80,8 +87,6 @@ radious = 50
 gopher1 = pg.image.load('地鼠.png')
 gopher2 = pg.image.load('Gophers2_150.png')
 gopher = gopher1
-gopher_width = gopher.get_width()
-gopher_heigh = gopher.get_height()
 gopher_tick = 0
 gopher_max_tick = 2
 ######################分數物件######################
@@ -100,21 +105,25 @@ times = 0
 times_max = 100
 typeface = pg.font.get_default_font()
 times_font = pg.font.Font(typeface, 24)
+######################聲音物件######################
+pg.mixer.music.load('hit.mp3')
 ######################循環偵測######################
 while True:
-    clock.tick(-1)
+    clock.tick(20)
     m_pos = pg.mouse.get_pos()
     for event in pg.event.get():
         if event.type == pg.QUIT:
             s.exit()
         if event.type == pg.MOUSEBUTTONDOWN:
             ham = ham1
-            if check_click(m_pos, pos[0] - gopher_width / 2,
-                           pos[1] - gopher_heigh / 2,
-                           pos[0] + gopher_width / 2,
-                           pos[1] + gopher_heigh / 2):
+            if check_click(m_pos, pos[0] - gopher.get_width() / 2,
+                           pos[1] - gopher.get_height() / 2,
+                           pos[0] + gopher.get_width() / 2,
+                           pos[1] + gopher.get_height() / 2):
                 tick = max_tick + 1
                 score += 1
+                gopher = gopher2
+                pg.mixer.music.play()
 
     if times >= times_max:
         gameover()
