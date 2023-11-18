@@ -15,7 +15,7 @@ def bg_update():
 
 
 def ds_move():
-    global ds_y, ds_index, jumpstate, jumpvalue,ds_center_x,ds_center_y,ds_detect_r
+    global ds_y, ds_index, jumpstate, jumpvalue,ds_center_x,ds_center_y,ds_detect_r,fast_descend
     if dino_down:
         jumpstate=False
         ds_y=LIMIL_LOW+20
@@ -24,12 +24,15 @@ def ds_move():
             jumpvalue = -jump_height
         if ds_y <= 0:
             jumpvalue = jump_height
+        if fast_descend:
+            jumpvalue=jump_height+20
         ds_y += jumpvalue
         jumpvalue+=1
         
         if ds_y >= LIMIL_LOW:
             jumpstate = False
             ds_y = LIMIL_LOW
+            fast_descend=False
     ds_index = (ds_index - 1) % len(ds_show)
     ds_center_x=ds_x+ds_show[ds_index].get_width()/2
     ds_center_y=ds_y+ds_show[ds_index].get_height()/2
@@ -107,6 +110,7 @@ ds_center_y=ds_y+img_dino[0].get_height()/2
 ds_detect_r=min(img_dino[0].get_width(),img_dino[0].get_height())/2
 ds_show=img_dino
 dino_down=False
+fast_descend=False
 ######################仙人掌物件######################
 cacti_x = bg_x + 10
 cacti_y = LIMIL_LOW
@@ -136,8 +140,11 @@ while True:
             if event.key == K_SPACE and ds_y <= LIMIL_LOW:
                 jumpstate = True
             elif event.key == K_DOWN:
-                dino_down=True
-                ds_show=img_dino_down
+                if jumpstate:
+                    fast_descend=True
+                else:
+                    dino_down=True
+                    ds_show=img_dino_down
         
     
             if event.key==K_RETURN:
@@ -149,9 +156,11 @@ while True:
                 jumpstate=False
         if event.type == pg.KEYUP:
             if  event.key == K_DOWN:
-                dino_down=False
-                ds_show=img_dino
-                ds_y=LIMIL_LOW
+                fast_descend=False
+                if ds_y>=LIMIL_LOW:
+                    dino_down=False
+                    ds_show=img_dino
+                    ds_y=LIMIL_LOW
 
     if gg:
         gameover()
