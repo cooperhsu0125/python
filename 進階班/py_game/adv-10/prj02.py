@@ -25,7 +25,7 @@ pg.init()
 clock = pg.time.Clock()
 ######################載入圖片######################
 img_bg = pg.image.load("space.png")
-img = [
+img_sship = [
     pg.image.load("fighter_M.png"),
     pg.image.load("fighter_L.png"),
     pg.image.load("fighter_R.png"),
@@ -39,6 +39,10 @@ bg_size = (bg_x, bg_y)
 pg.display.set_caption("Galaxy Lancer")
 screen = pg.display.set_mode(bg_size)
 roll_y = 0
+ss_x = bg_x / 2
+ss_y = bg_y / 2
+ss_wh = img_sship[0].get_width()
+ss_hh = img_sship[0].get_height() / 2
 ######################玩家設定######################
 
 ######################主程式######################
@@ -50,7 +54,7 @@ while True:
         if event.type == KEYDOWN:
             if event.key == K_F11:
                 screen = pg.display.set_mode(bg_size, FULLSCREEN)
-            elif event.type == K_BACKSPACE:
+            elif event.type == K_ESCAPE:
                 screen = pg.display.set_mode(bg_size)
     roll_bg()
     pg.display.update()

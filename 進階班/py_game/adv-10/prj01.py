@@ -61,8 +61,8 @@ def ds_move():
     if jumpstate and not dino_down:
         if ds_y >= LIMIL_LOW:
             jumpvalue = -jump_height
-        # if ds_y <= 0:
-        #     jumpvalue = jump_height
+        if ds_y <= 0:
+            jumpvalue = jump_height
         if fast_descend:
             jumpvalue = jump_height + 20
         ds_y += jumpvalue
