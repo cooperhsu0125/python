@@ -34,7 +34,7 @@ class Missile:
 
 
 class Enemy:
-    def __init__(self, x, y, image, shift):
+    def __init__(self, x, y, image, shift, burn_img):
         self.x = x
         self.y = y
         self.image = image
@@ -42,15 +42,24 @@ class Enemy:
         self.shift = shift
         self.wh = image.get_width() // 2
         self.hh = image.get_height() // 2
+        self.burn_img = burn_img
+        self.burn_shift = 0
+        self.burn_w, self.burn_h = burn_img.get_rect().size
+        self.EXPLODE: int = 0
 
     def move(self):
         if self.active:
             self.y += self.shift
             if self.y > bg_y:
-                self.active = False
+                self.reset(*create_enemy(), self.shift)
 
     def draw(self, screen):
         if self.active:
+            self.burn_shift = (self.burn_shift + 2) % 17
+            screen.blit(
+                self.burn_img,
+                [self.x - self.burn_w / 2, self.y - self.burn_h - self.burn_shift],
+            )
             screen.blit(self.image, (self.x - self.wh, self.y - self.hh))
 
     def reset(self, x, y, image, shift):
@@ -61,6 +70,7 @@ class Enemy:
         self.shift = shift
         self.wh = image.get_width() // 2
         self.hh = image.get_height() // 2
+        self.EXPLODE = 0
 
 
 ######################載入套件######################
@@ -113,6 +123,27 @@ def create_enemy():
     return emy_x, emy_y, emy_img
 
 
+def is_hit(x1, y1, x2, y2, r):
+    if ((x1 - x2) ** 2 + (y1 - y2) ** 2) < (r * r):
+        return True
+    else:
+        return False
+
+
+def score_update():
+    score_sur = score_font.render(str(score), True, (255, 255, 255))
+    screen.blit(score_sur, (10, 10))
+
+
+def draw_explode(enemy: Enemy):
+    if 0 < enemy.EXPLODE < 6:
+        exp_w, exp_h = img_explode[enemy.EXPLODE].get_rect().size
+        screen.blit(
+            img_explode[enemy.EXPLODE], [enemy.x - exp_w / 2, enemy.y - exp_h / 2]
+        )
+        enemy.EXPLODE += 1
+
+
 ######################初始化設定######################
 os.chdir(sys.path[0])
 pg.init()
@@ -128,7 +159,16 @@ img_enemy = pg.image.load("enemy1.png")
 img_enemy2 = pg.image.load("enemy2.png")
 img_burn = pg.image.load("starship_burner.png")
 img_weapon = pg.image.load("bullet.png")
-
+img_emy_burn = pg.transform.rotate(img_burn, 180)
+img_explode = [
+    None,
+    pg.image.load("explosion1.png"),
+    pg.image.load("explosion2.png"),
+    pg.image.load("explosion3.png"),
+    pg.image.load("explosion4.png"),
+    pg.image.load("explosion5.png"),
+    pg.image.load,
+]
 ######################遊戲視窗設定######################
 bg_x = img_bg.get_width()
 bg_y = img_bg.get_height()
@@ -148,16 +188,23 @@ burn_w, burn_h = img_burn.get_rect().size
 msl_wh = img_weapon.get_width() / 2
 msl_hh = img_weapon.get_height() / 2
 msl_shift = 30
-MISSILE_MAX = 10
-missiles = [Missile(0, 0, img_weapon, 30) for _ in range(MISSILE_MAX)]
+MISSILE_MAX = 100
+missiles = [Missile(0, 0, img_weapon, msl_shift) for _ in range(MISSILE_MAX)]
 msl_cd = 0
-msl_cd_max = 10
+msl_cd_max = 0
 ######################敵機設定######################
 emy_show = [img_enemy, img_enemy2]
-emy_shift = 5
-enemy = Enemy(*create_enemy(), emy_shift)
-emy2_shift = 5
-enemy2 = Enemy(*create_enemy(), emy2_shift)
+emy_shift = 10
+emy_list: List[Enemy] = []
+emy_num = 5
+for i in range(emy_num):
+    emy_list.append(Enemy(*create_enemy(), emy_shift, img_emy_burn))  # 建立敵機
+######################分數設定######################
+score = 0
+typeface = pg.font.get_default_font()
+score_font = pg.font.Font(typeface, 36)
+######################音樂設定######################
+pg.mixer.music.load("hit.mp3")
 ######################主程式######################
 while True:
     clock.tick(60)
@@ -182,12 +229,21 @@ while True:
     for missile in missiles:
         missile.move()
         missile.draw(screen)
-    enemy.move()
-    enemy.draw(screen)
-    if not enemy.active:
-        enemy.reset(*create_enemy(), emy_shift)
-    enemy2.move()
-    enemy2.draw(screen)
-    if not enemy2.active:
-        enemy2.reset(*create_enemy(), emy2_shift)
+    for enemy in emy_list:
+        enemy.move()
+        enemy.draw(screen)
+        draw_explode(enemy)
+        for missile in missiles:
+            if missile.active and is_hit(
+                enemy.x, enemy.y, missile.x, missile.y, msl_wh + enemy.wh
+            ):
+                missile.active = False
+                enemy.active = False
+                score += 1
+                enemy.EXPLODE = 1
+                pg.mixer.music.play()
+                break
+        if not enemy.active and enemy.EXPLODE == 6:
+            enemy.reset(*create_enemy(), emy_shift)
+    score_update()
     pg.display.update()
