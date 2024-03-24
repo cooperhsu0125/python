@@ -13,14 +13,14 @@ R.value(0)
 B.value(0)
 G.value(0)
 #########################主程式#########################
-while True:
-    R.value(1)
+# while True:
+#     R.value(1)
 
-    G.value(0)
-    sleep(1)
-    G.value(1)
-    sleep(1)
-    R.value(0)
+#     G.value(0)
+#     sleep(1)
+#     G.value(1)
+#     sleep(1)
+#     R.value(0)
 
-    G.value(1)
-    sleep(1)
+#     G.value(1)
+#     sleep(1)
